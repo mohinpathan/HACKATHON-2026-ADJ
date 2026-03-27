@@ -14,6 +14,7 @@
 <h1 style="text-align:center;">Inventory Dashboard</h1>
 
 <table border="1" align="center">
+
 <tr>
 <th>ID</th>
 <th>Name</th>
@@ -25,10 +26,13 @@
 <%
 List<Product> products = (List<Product>) request.getAttribute("productList");
 
+
 if(products != null){
     for(Product p : products){
+    	String cls = (p.getQuantity() <= p.getLowStockThreshold()) ? "low" : "";
 %>
 <tr>
+
 <td><%= p.getId() %></td>
 <td><%= p.getName() %></td>
 <td><%= p.getCategory() %></td>
@@ -41,6 +45,7 @@ if(products != null){
 %>
 
 </table>
+
 
 <jsp:include page="footer.jsp"/>
 
