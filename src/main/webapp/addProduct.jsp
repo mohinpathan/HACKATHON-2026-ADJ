@@ -45,7 +45,30 @@ button {
 }
 </style>
 </head>
+<script>
+function validateForm() {
+    let name = document.getElementsByName("name")[0].value.trim();
+    let qty = document.getElementsByName("quantity")[0].value;
+    let price = document.getElementsByName("price")[0].value;
 
+    if (name === "") {
+        alert("❌ Product name cannot be empty");
+        return false;
+    }
+
+    if (qty === "" || qty < 0) {
+        alert("❌ Quantity must be valid");
+        return false;
+    }
+
+    if (price === "" || price < 0) {
+        alert("❌ Price must be valid");
+        return false;
+    }
+
+    return true;
+}
+</script>
 <body>
 
 <jsp:include page="header.jsp"/>
@@ -53,9 +76,9 @@ button {
 <div class="card">
 <h2>Add Product</h2>
 
-<form action="inventory" method="post">
+<form action="inventory" method="post" action="inventory" onsubmit="return validateForm()">
     <input type="hidden" name="action" value="add"/>
-
+ 	<input type="number" name="id"/>
     <input type="text" name="name" placeholder="Product Name" required/>
 
     <select name="category">

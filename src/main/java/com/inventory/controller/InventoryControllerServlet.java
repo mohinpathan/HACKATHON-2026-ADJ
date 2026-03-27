@@ -8,6 +8,7 @@ import jakarta.servlet.http.*;
 
 import com.inventory.model.Product;
 import com.inventory.service.InventoryService;
+import com.inventory.util.DataStore; 
 
 public class InventoryControllerServlet extends HttpServlet {
 
@@ -32,7 +33,7 @@ public class InventoryControllerServlet extends HttpServlet {
 
         try {
             if ("add".equals(action)) {
-                int id = Integer.parseInt(request.getParameter("id"));
+            	int id = Integer.parseInt(request.getParameter("id"));
                 String name = request.getParameter("name");
                 String category = request.getParameter("category");
                 int qty = Integer.parseInt(request.getParameter("quantity"));

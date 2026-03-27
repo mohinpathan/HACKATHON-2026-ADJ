@@ -8,6 +8,11 @@ import com.inventory.model.Product;
 public class DataStore {
 
     public static List<Product> products = new ArrayList<>();
+    private static int idCounter = 1;
+
+    public static int getNextId() {
+        return idCounter++;
+    }
 
     // STATIC BLOCK = runs automatically when class loads
     static {

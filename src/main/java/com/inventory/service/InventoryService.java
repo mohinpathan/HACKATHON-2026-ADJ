@@ -49,4 +49,9 @@ public class InventoryService {
             p.setPrice(price);
         }
     }
+    
+    public boolean isDuplicateId(int id) {
+        return DataStore.products.stream()
+                .anyMatch(p -> p.getId() == id);
+    }
 }
