@@ -26,4 +26,8 @@ public class Product {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    
+    public void setName(String name) { this.name = name; }
+    public void setCategory(String category) { this.category = category; }
+    public void setPrice(double price) { this.price = price; }
 }

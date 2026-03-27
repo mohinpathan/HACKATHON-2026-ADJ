@@ -3,10 +3,10 @@
 
 <style>
 .footer {
-    background: #1e3c72;
-    color: white;
-    padding: 10px;
     text-align: center;
+    padding: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -14,5 +14,5 @@
 </style>
 
 <div class="footer">
-    <p>© 2026 Mobile Inventory System | Hackathon Project 🚀</p>
+    🚀 Hackathon Project | Mobile Inventory System
 </div>

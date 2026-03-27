@@ -53,6 +53,15 @@ public class InventoryControllerServlet extends HttpServlet {
                 int qty = Integer.parseInt(request.getParameter("quantity"));
                 service.stockOut(id, qty);
             }
+            else if ("update".equals(action)) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                String name = request.getParameter("name");
+                String category = request.getParameter("category");
+                int qty = Integer.parseInt(request.getParameter("quantity"));
+                double price = Double.parseDouble(request.getParameter("price"));
+
+                service.updateProduct(id, name, category, qty, price);
+            }
 
             response.sendRedirect("home");
 

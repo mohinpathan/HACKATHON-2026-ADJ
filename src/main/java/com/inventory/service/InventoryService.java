@@ -35,4 +35,18 @@ public class InventoryService {
             p.setQuantity(p.getQuantity() - qty);
         }
     }
+    
+    public void deleteProduct(int id) {
+        DataStore.products.removeIf(p -> p.getId() == id);
+    }
+
+    public void updateProduct(int id, String name, String category, int qty, double price) {
+        Product p = findProduct(id);
+        if (p != null) {
+            p.setName(name);
+            p.setCategory(category);
+            p.setQuantity(qty);
+            p.setPrice(price);
+        }
+    }
 }
