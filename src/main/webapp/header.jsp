@@ -35,5 +35,6 @@
         <a href="home">Dashboard</a>
         <a href="addProduct.jsp">Add Product</a>
         <a href="stock.jsp">Stock</a>
+        <a href="sales.jsp">Sales</a>
     </div>
 </div>

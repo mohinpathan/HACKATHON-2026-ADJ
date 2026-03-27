@@ -79,6 +79,14 @@ button:hover {
 <body>
 
 <jsp:include page="header.jsp"/>
+<%
+if (p == null) {
+%>
+    <h2 style="text-align:center;color:red;">❌ Product not found</h2>
+<%
+    return;
+}
+%>
 
 <div class="card">
 

@@ -141,6 +141,7 @@ function filterProducts() {
 
 <body>
 
+
 <jsp:include page="header.jsp"/>
 
 <!-- SEARCH -->
@@ -175,8 +176,15 @@ if(products != null){
         }
     }
 }
-%>
 
+
+if (products == null || products.isEmpty()) {
+%>
+    <h2 style="text-align:center;">No Products Found</h2>
+<%
+    return;
+}
+%>
 <!-- REPORT -->
 <div class="report-container">
     <div class="report-card total">
@@ -203,6 +211,19 @@ if(products != null){
     for(Product p : products){
         boolean low = p.getQuantity() <= p.getLowStockThreshold();
 %>
+<%
+String msg = request.getParameter("msg");
+
+if ("deleted".equals(msg)) {
+%>
+    <p style="color:lightgreen; text-align:center;">✅ Product deleted successfully</p>
+<%
+} else if ("error".equals(msg)) {
+%>
+    <p style="color:red; text-align:center;">❌ Error deleting product</p>
+<%
+}
+%>
 
 <div class="card <%= low ? "low" : "" %>"
      data-name="<%= p.getName().toLowerCase() %>"
@@ -220,10 +241,12 @@ if(products != null){
     </p>
 
     <div class="btn-group">
-        <form action="inventory" method="post">
-            <input type="hidden" name="id" value="<%= p.getId() %>"/>
-            <button name="action" value="delete" class="delete-btn">Delete</button>
-        </form>
+        <form action="inventory" method="post"
+      onsubmit="return confirm('Are you sure you want to delete this product?')">
+      
+    <input type="hidden" name="id" value="<%= p.getId() %>"/>
+    <button name="action" value="delete" class="delete-btn">Delete</button>
+</form>
 
         <form action="editProduct.jsp" method="get">
             <input type="hidden" name="id" value="<%= p.getId() %>"/>

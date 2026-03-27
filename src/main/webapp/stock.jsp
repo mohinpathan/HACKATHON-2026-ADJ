@@ -41,18 +41,46 @@ button {
 </head>
 
 <body>
+<script>
+function fetchProduct() {
 
+    let id = document.getElementById("pid").value;
+
+    if (id === "") return;
+
+    fetch("inventory?action=getProduct&id=" + id)
+        .then(res => res.json())
+        .then(data => {
+
+            if (data.error) {
+                document.getElementById("pname").value = "Not Found";
+                document.getElementById("pqty").value = "";
+            } else {
+                document.getElementById("pname").value = data.name;
+                document.getElementById("pqty").value = data.qty;
+            }
+        });
+}
+</script>
 <jsp:include page="header.jsp"/>
 
 <div class="card">
 <h2>Stock Management</h2>
 
 <form action="inventory" method="post">
-    <input type="number" name="id" placeholder="Product ID" required/>
-    <input type="number" name="quantity" placeholder="Quantity" required/>
+
+    <input type="number" id="pid" name="id" placeholder="Product ID"
+           onkeyup="fetchProduct()" required/>
+
+    <input type="text" id="pname" placeholder="Product Name" readonly/>
+
+    <input type="number" id="pqty" placeholder="Current Quantity" readonly/>
+
+    <input type="number" name="quantity" placeholder="Enter Quantity" min="1" required/>
 
     <button class="in" name="action" value="stockIn">Stock In</button>
     <button class="out" name="action" value="stockOut">Stock Out</button>
+
 </form>
 </div>
 

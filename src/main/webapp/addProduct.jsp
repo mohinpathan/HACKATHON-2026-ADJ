@@ -75,10 +75,21 @@ function validateForm() {
 
 <div class="card">
 <h2>Add Product</h2>
-
-<form action="inventory" method="post" action="inventory" onsubmit="return validateForm()">
+<%
+String msg = request.getParameter("msg");
+if ("success".equals(msg)) {
+%>
+    <p style="color:green;">✅ Product added successfully</p>
+<%
+} else if ("error".equals(msg)) {
+%>
+    <p style="color:red;">❌ Failed to add product</p>
+<%
+}
+%>
+<form action="inventory" method="post" onsubmit="return validateForm()">
     <input type="hidden" name="action" value="add"/>
- 	<input type="number" name="id"/>
+ 	<!-- <input type="number" name="id"/> -->
     <input type="text" name="name" placeholder="Product Name" required/>
 
     <select name="category">
